@@ -1,9 +1,9 @@
 import React from "react";
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import Auth from "../routes/Auth";
-import Home from "../routes.Home";
+import Home from "../routes/Home";
 
-const Router = ({isLoggedIn}) =>{
+const AppRouter = ({isLoggedIn}) =>{
     return (
         <Router>
             <Switch>
@@ -24,3 +24,5 @@ const Router = ({isLoggedIn}) =>{
         </Router>
     );
 }
+
+export default AppRouter;
