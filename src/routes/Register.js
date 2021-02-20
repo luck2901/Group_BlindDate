@@ -23,7 +23,8 @@ const Register = () =>{
     const onSubmit = async(e) =>{
         e.preventDefault();
         try{
-            const data = await authService.createUserWithEmailAndPassword(email,password);
+            await authService.createUserWithEmailAndPassword(email,password);
+            history.push("/");
         }catch(error){
             setError(error.message)
         };
@@ -40,18 +41,22 @@ const Register = () =>{
         history.push("/");
     } 
     return (
-        <form onSubmit={onSubmit}>
-            <input type="email" placeholder="Email" name="email" onChange = {onChange} required/> <br/>
-            <input type="password" placeholder="Password" name="password" onChange = {onChange} required/> <br/>
-            <input type="text" placeholder= "School" name="school" onChange = {onChange} /> <br/>
-            <input type="text" placeholder="Name" name="name" onChange={onChange}  /> <br/>
-            <input type="text" placeholder="Age" name="age" onChange={onChange}  /> <br/>
-            <input type="radio" name="gender" value="man"  onClick={onCheck} defaultChecked/>Man
-            <input type="radio" name="gender" value="woman" onClick={onCheck} />Woman <br/>
-            <input type="submit" name="register" value = "Submit"/>
-            <button name="back" value = "back" onClick={onBack}>Back</button> <br/>
-            <span>{error}</span>
-        </form>
+        <div>
+            <form onSubmit={onSubmit}>
+                <input type="email" placeholder="Email" name="email" onChange = {onChange} required/> <br/>
+                <input type="password" placeholder="Password" name="password" onChange = {onChange} required/> <br/>
+                <input type="text" placeholder= "School" name="school" onChange = {onChange} /> <br/>
+                <input type="text" placeholder="Name" name="name" onChange={onChange}  /> <br/>
+                <input type="text" placeholder="Age" name="age" onChange={onChange}  /> <br/>
+                <input type="radio" name="gender" value="man"  onClick={onCheck} defaultChecked/>Man
+                <input type="radio" name="gender" value="woman" onClick={onCheck} />Woman <br/>
+                <input type="submit" name="register" value = "Submit"/>
+            </form>
+            <div>
+                <button name="back" value = "back" onClick={onBack}>Back</button> <br/>
+                <span>{error}</span>
+            </div>
+        </div>
     );
 }
 
