@@ -17,7 +17,7 @@ const Auth = () => {
     const onSubmit = async(e) =>{
         e.preventDefault();
         try{
-            const data = await authService.signInWithEmailAndPassword(email,password);
+            const data = await authService.signInWithEmailAndPassword(email,password)
         }catch(error){
             setError(error.message);
         }
