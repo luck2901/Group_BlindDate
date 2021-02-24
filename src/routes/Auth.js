@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom"
 import "firebase/auth";
-import { authService, firebaseInstance } from '../Fbase';
+import { authService, firebaseInstance} from '../Fbase';
 
 const Auth = () => {
     const [email,setEmail] = useState("");
@@ -23,15 +23,15 @@ const Auth = () => {
         }
     }
     const onClick = async(e) =>{
+            history.push("/Register");
+    }
+    const anotherLog = async(e) =>{
         const {target:{name}} = e;
         let provider;
-        if(name === "register")
-        {
-            history.push("/Register");
-        }else if(name==="google"){
+        if(name ==="google"){
             provider = new firebaseInstance.auth.GoogleAuthProvider();
-        }        
-        await authService.signInWithPopup(provider);
+        }
+        await authService.signInWithPopup(provider);       
     }
     return(
         <form onSubmit = {onSubmit}>
@@ -41,7 +41,7 @@ const Auth = () => {
             <input name = "register" type="submit" onClick={onClick} value="Register"/>
             <span>{error}</span>
             <div>
-                <button onClick={onClick} name="google">LOGIN with GOOGLE</button>
+                <button onClick={anotherLog} name="google">LOGIN with GOOGLE</button>
             </div>
         </form>
     );

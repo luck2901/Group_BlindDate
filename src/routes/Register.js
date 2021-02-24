@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import {useHistory} from "react-router-dom"
-import {authService} from "../Fbase"
+import {authService, dbService} from "../Fbase"
 
 const Register = () =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [school, setSchool] = useState("");
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("man");
@@ -16,7 +15,6 @@ const Register = () =>{
         const {target:{value,name}}=e;
         if(name==="email") setEmail(value);
         else if(name==="password") setPassword(value);
-        else if(name==="school") setSchool(value);
         else if(name==="age") setAge(value);
         else if(name==="name") setName(value);
     }
@@ -45,7 +43,6 @@ const Register = () =>{
             <form onSubmit={onSubmit}>
                 <input type="email" placeholder="Email" name="email" onChange = {onChange} required/> <br/>
                 <input type="password" placeholder="Password" name="password" onChange = {onChange} required/> <br/>
-                <input type="text" placeholder= "School" name="school" onChange = {onChange} /> <br/>
                 <input type="text" placeholder="Name" name="name" onChange={onChange}  /> <br/>
                 <input type="text" placeholder="Age" name="age" onChange={onChange}  /> <br/>
                 <input type="radio" name="gender" value="man"  onClick={onCheck} defaultChecked/>Man
