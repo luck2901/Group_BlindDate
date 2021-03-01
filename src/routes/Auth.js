@@ -22,7 +22,7 @@ const Auth = () => {
             setError(error.message);
         }
     }
-    const onClick = async(e) =>{
+    const onClick = async() =>{
             history.push("/Register");
     }
     const anotherLog = async(e) =>{
