@@ -13,9 +13,9 @@ const Profile = ({userObject}) =>{
         if(value==="남") setSex("남");
         else if(value==="여") setSex("여");
     }
-    const onSubmit = (e) =>{
+    const onSubmit = async(e) =>{
         e.preventDefault();
-        dbService.doc(`Information/${userObject.uid}`).set({
+        await dbService.doc(`Information/${userObject.uid}`).update({
             name,
             age,
             sex
