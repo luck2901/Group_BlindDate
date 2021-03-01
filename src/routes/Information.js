@@ -1,11 +1,11 @@
 import React,{useState} from "react";
 import {dbService} from "../Fbase";
+import { useHistory } from 'react-router-dom';
 
-const Information = ({userObject}) =>{
+const Information = ({userObject, setInfor}) =>{
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [sex, setSex] = useState("남");
-
     const onRadioClick = (e) =>{
         const {target:{value}} = e;
         if(value==="남") setSex("남");
@@ -18,7 +18,7 @@ const Information = ({userObject}) =>{
             age,
             sex
         });
-        
+        setInfor(false);
     }
     const onChange = (e) =>{
         const {target:{value,name}} = e;

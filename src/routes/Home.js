@@ -1,11 +1,5 @@
-import React,{useState} from "react";
-import {dbService} from "../Fbase";
-import Information from "./Information";
+import React,{} from "react";
 
-const Home = ({userObject}) =>{
-    return(
-        <Information userObject={userObject}/>
-    );
-}
+const Home = () =><span>ss</span>
 
 export default Home;
