@@ -1,7 +1,10 @@
 import React, {useState} from "react";
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faGoogle, faGithub} from "@fortawesome/free-brands-svg-icons";
 import "firebase/auth";
 import { authService, firebaseInstance} from '../Fbase';
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Auth = () => {
     const [email,setEmail] = useState("");
@@ -34,16 +37,25 @@ const Auth = () => {
         await authService.signInWithPopup(provider);       
     }
     return(
-        <form onSubmit = {onSubmit}>
+        <div className="authContainer">
+        <FontAwesomeIcon
+        icon={faHeart} 
+        color="red"
+        size="3x"
+        style={{marginBottom:30}}
+        />
+        <form onSubmit = {onSubmit} className="container">
             <input name = "email" type="text" onChange = {onChange} value={email} placeholder="Email" required/>
             <input name = "password" type ="password" onChange={onChange} value={password} placeholder="Password" required/>
-            <input type="submit" value="LOG IN"/>
-            <input name = "register" type="submit" onClick={onClick} value="Register"/>
+            <input className="formbtn" type="submit" value="LOG IN"/>
+            <input className="formbtn" name = "register" type="submit" onClick={onClick} value="Register"/>
             <span>{error}</span>
-            <div>
-                <button onClick={anotherLog} name="google">LOGIN with GOOGLE</button>
+            <div >
+                <button className="google" onClick={anotherLog} name="google">LOGIN with GOOGLE <FontAwesomeIcon icon={faGoogle}/></button>
+                <button className="github" onClick={anotherLog} name="github">LOGIN with GITHUB <FontAwesomeIcon icon={faGithub}/></button>
             </div>
         </form>
+        </div>
     );
 }
 
