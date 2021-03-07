@@ -46,12 +46,18 @@ form input{
 .google, .github{
     border-radius:10px;
     margin-top:5px;
+    cursor:pointer;
 }
 
-.formbtn{
+.formbtn, .regbtn{
     cursor:pointer;
     background-color:orange;
     color:white;
+    width: 100%;
+    max-width:320px;
+    height:30px;
+    margin : 5px;
+    border-radius:10px;
 }
 
 .authContainer{
@@ -60,4 +66,12 @@ form input{
     height:100vh;
     justify-content:center; /*가로의 중심*/
     align-items:center; /*세로의 중심 */
+}
+
+.registerContainer{
+    display: flex;
+    flex-direction:column;
+    height:100vh;
+    justify-content: center;
+    align-items: center;
 }

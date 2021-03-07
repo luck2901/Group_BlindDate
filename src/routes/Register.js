@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import {useHistory} from "react-router-dom"
 import {authService} from "../Fbase"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () =>{
     const [email, setEmail] = useState("");
@@ -27,16 +29,20 @@ const Register = () =>{
         history.push("/");
     } 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <input type="email" placeholder="Email" name="email" onChange = {onChange} required/> <br/>
-                <input type="password" placeholder="Password" name="password" onChange = {onChange} required/> <br/>
-                <input type="submit" name="register" value = "Submit"/>
-            </form>
-            <div>
-                <button name="back" value = "back" onClick={onBack}>Back</button> <br/>
-                <span>{error}</span>
-            </div>
+        <div className = "registerContainer">
+            <FontAwesomeIcon 
+            icon = {faUserEdit}
+            color="orange"
+            size="3x"
+            style={{marginBottom:30}}
+            />
+                <form onSubmit={onSubmit} className="container">
+                    <input type="email" placeholder="Email" name="email" onChange = {onChange} required/> <br/>
+                    <input type="password" placeholder="Password" name="password" onChange = {onChange} required/> <br/>
+                    <input className = "regbtn" type="submit" name="register" value = "Submit"/>
+                    <input className = "regbtn" type="button" name="back" value = "back" onClick={onBack}/><br/>
+                    <span>{error}</span>
+                </form>
         </div>
     );
 }
