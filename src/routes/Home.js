@@ -30,6 +30,11 @@ const Home = () => {
                 latlng: new kakao.maps.LatLng(35.843628, 127.127320),
                 content: '베스킨 라빈스 31'
             },
+            {
+                title: '서래 갈매기',
+                latlng: new kakao.maps.LatLng(35.842662, 127.128264),
+                content: '서래 갈매기'
+            }
         ]
         const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
         for (let i = 0; i < position.length; i++) {
@@ -41,10 +46,9 @@ const Home = () => {
                 title: position[i].title,
                 image: markerImage
             });
-            kakao.maps.event.addListener(marker, 'mouseover', MakeOverListener(position));
-            function MakeOverListener(position) {
+            kakao.maps.event.addListener(marker, 'click', function () {
                 setInformation(position[i].content);
-            }
+            });
         }
     }, []);
 
