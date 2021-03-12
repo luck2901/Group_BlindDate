@@ -1,2 +1,2 @@
-# group_blinddate
-UGBD : University Student Group Blind Date
+# 😁 Welcome_JBNU
+An app that introduces Chonbuk National University
