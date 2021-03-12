@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const { kakao } = window;
 
 const Home = () => {
+    const [information, setInformation] = useState('');
 
     useEffect(() => {
         const container = document.getElementById('myMap'); //지도를 담을 영역의 DOM 레퍼런스.
@@ -23,18 +24,41 @@ const Home = () => {
                 lineHeight: '54px'
             }]
         });
-        const marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(35.843628, 127.127320)
-        })
-        clusterer.addMarker(marker);
-
+        const position = [
+            {
+                title: '베스킨 라빈스 31',
+                latlng: new kakao.maps.LatLng(35.843628, 127.127320),
+                content: '베스킨 라빈스 31'
+            },
+        ]
+        const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        for (let i = 0; i < position.length; i++) {
+            let imageSize = new kakao.maps.Size(24, 35);
+            let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+            let marker = new kakao.maps.Marker({
+                map: map,
+                position: position[i].latlng,
+                title: position[i].title,
+                image: markerImage
+            });
+            kakao.maps.event.addListener(marker, 'mouseover', MakeOverListener(position));
+            function MakeOverListener(position) {
+                setInformation(position[i].content);
+            }
+        }
     }, []);
 
     return (
-        <div id='myMap' style={{
-            width: '500px',
-            height: '500px'
-        }}></div>
+        <div>
+            <div id='myMap' style={{
+                width: '500px',
+                height: '500px'
+            }}>
+            </div>
+            <div id="information">
+                {information}
+            </div>
+        </div>
     );
 }
 
