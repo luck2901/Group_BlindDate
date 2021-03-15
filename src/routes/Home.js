@@ -13,18 +13,7 @@ const Home = () => {
             level: 5 //지도의 레벨(확대, 축소 정도)
         };
         const map = new kakao.maps.Map(container, options);
-        const clusterer = new kakao.maps.MarkerClusterer({
-            map: map,
-            averageCenter: true,
-            minlevel: 2,
-            styles: [{
-                width: '53px', height: '52px',
-                background: 'url(cluster.png) no-repeat',
-                color: '#fff',
-                textAlign: 'center',
-                lineHeight: '54px'
-            }]
-        });
+
         if (navigator.geolocation) {
 
             // GeoLocation을 이용해서 접속 위치를 얻어옵니다
