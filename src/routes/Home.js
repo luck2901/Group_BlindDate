@@ -5,6 +5,7 @@ const { kakao } = window;
 const Home = () => {
     const [title, setTitle] = useState('');
     const [information, setInformation] = useState("");
+    const [kind, setKind] = useState("cafe");
 
     useEffect(() => {
         const container = document.getElementById('myMap'); //지도를 담을 영역의 DOM 레퍼런스.
@@ -49,28 +50,36 @@ const Home = () => {
             // 지도 중심좌표를 접속위치로 변경합니다
             map.setCenter(locPosition);
         }
-        const position = [
-            {
-                title: '베스킨 라빈스 31',
-                latlng: new kakao.maps.LatLng(35.843628, 127.127320),
-                content: '맛있는 걸 먹었으면 시~원한 아이스크림 어떠세요??'
-            },
-            {
-                title: '서래 갈매기',
-                latlng: new kakao.maps.LatLng(35.842662, 127.128264),
-                content: '서래 갈매기'
-            },
-            {
-                title: '오늘김해뒷고기',
-                latlng: new kakao.maps.LatLng(35.843023, 127.128489),
-                content: '김뒷'
-            },
-            {
-                title: '홍곱창',
-                latlng: new kakao.maps.LatLng(35.842040, 127.128102),
-                content: '홍곱창'
-            }
-        ]
+        let position;
+        if (kind === 'food') {
+
+            position = [
+                {
+                    title: '서래 갈매기',
+                    latlng: new kakao.maps.LatLng(35.842662, 127.128264),
+                    content: '서래 갈매기'
+                },
+                {
+                    title: '오늘김해뒷고기',
+                    latlng: new kakao.maps.LatLng(35.843023, 127.128489),
+                    content: '김뒷'
+                },
+                {
+                    title: '홍곱창',
+                    latlng: new kakao.maps.LatLng(35.842040, 127.128102),
+                    content: '홍곱창'
+                }
+            ]
+        } else if (kind === 'cafe') {
+            position = [
+                {
+                    title: '베스킨 라빈스 31',
+                    latlng: new kakao.maps.LatLng(35.843628, 127.127320),
+                    content: '맛있는 걸 먹었으면 시~원한 아이스크림 어떠세요??'
+                },
+            ]
+        }
+
         const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
         for (let i = 0; i < position.length; i++) {
             let imageSize = new kakao.maps.Size(24, 35);
@@ -86,8 +95,17 @@ const Home = () => {
                 setInformation(position[i].content);
             });
         }
-    }, []);
+    }, [kind]);
 
+    const onSelect = (e) => {
+        const { name } = e.target;
+        if (name === '음식점') {
+            setKind("food");
+        } else if (name === "카페") {
+            setKind("cafe");
+        }
+
+    }
     return (
         <div>
             <div id='myMap' style={{
@@ -96,6 +114,10 @@ const Home = () => {
             }}>
             </div>
             <div >
+                <div>
+                    <button onClick={onSelect} name="음식점">음식점</button>
+                    <button onClick={onSelect} name="카페">카페</button>
+                </div>
                 <div>
                     {title}
                 </div>
