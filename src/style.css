@@ -75,3 +75,20 @@ form input{
     justify-content: center;
     align-items: center;
 }
+
+.nav-wrapper{
+    background-color: orange;
+}
+
+#myMap{
+    margin:20px;
+    height:500px;
+    width:500px;
+}
+
+.mapContainer{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}

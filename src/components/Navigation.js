@@ -3,13 +3,16 @@ import { Link } from "react-router-dom"
 
 const Navigation = () => {
     return (
-        <div>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/Chat">Chat</Link></li>
-                <li><Link to="/Profile">Profile</Link></li>
-            </ul>
-        </div>
+        <nav>
+            <div className="nav-wrapper">
+                <a href="#" class="brand-logo">Welcome JBNU</a>
+                <ul id="nav-mobile" className="right hide-on-mid-and-down">
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/Chat">Chat</Link></li>
+                    <li><Link to="/Profile">Profile</Link></li>
+                </ul>
+            </div>
+        </nav>
     )
 }
 
