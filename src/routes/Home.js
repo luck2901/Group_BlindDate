@@ -13,17 +13,17 @@ const Home = () => {
         {
             title: '서래 갈매기',
             latlng: new kakao.maps.LatLng(35.842662, 127.128264),
-            content: '서래 갈매기'
+            content: '항상 사람이 꽉~ 차있는 서래 갈매기. 갈매기 살에 뜨끈한 된장찌개까지 드셔보세요!!'
         },
         {
             title: '오늘김해뒷고기',
             latlng: new kakao.maps.LatLng(35.843023, 127.128489),
-            content: '김뒷'
+            content: '보다 저렴한 가격으로 뒷고기를 드시고 싶으시면 오늘김해뒷고기로 오셔서 드세요~ 볶음밥도 맛있답니다.'
         },
         {
             title: '홍곱창',
             latlng: new kakao.maps.LatLng(35.842040, 127.128102),
-            content: '홍곱창'
+            content: '야채곱창 양이 1인분이 1인분이 아닙니다. 상당히 많고 비린내도 안나요~ 추천드립니다!'
         }
     ]
     const cafe = [
@@ -73,42 +73,6 @@ const Home = () => {
         },
     ]
     useEffect(() => {
-
-        // if (navigator.geolocation) {
-
-        //     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        //     navigator.geolocation.getCurrentPosition(function (position) {
-
-        //         let lat = position.coords.latitude, // 위도
-        //             lon = position.coords.longitude; // 경도
-
-        //         let locPosition = new kakao.maps.LatLng(lat, lon) // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-
-        //         // 마커와 인포윈도우를 표시합니다
-        //         displayMarker(locPosition);
-
-        //     });
-
-        // } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-        //     let locPosition = new kakao.maps.LatLng(33.450701, 126.570667)
-
-        //     displayMarker(locPosition);
-        // }
-
-
-        // // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-        // function displayMarker(locPosition) {
-
-        //     // 마커를 생성합니다
-        //     let marker = new kakao.maps.Marker({
-        //         map: map,
-        //         position: locPosition
-        //     });
-
-        //     // 지도 중심좌표를 접속위치로 변경합니다
-        //     map.setCenter(locPosition);
-        // }
         let position;
         if (kind === 'food') {
             position = food;
@@ -148,6 +112,14 @@ const Home = () => {
         <div className="mapContainer">
             <div id='myMap'>
             </div>
+            <div className="explain">
+                <div>
+                    {title}
+                </div>
+                <div>
+                    {information}
+                </div>
+            </div>
             <div >
                 <div>
                     <a className="waves-effect waves-light btn" onClick={onSelect} name="food">
@@ -171,12 +143,6 @@ const Home = () => {
                             size="1x"
                             style={{ marginRight: 10 }}
                         />Tour</a>
-                </div>
-                <div>
-                    {title}
-                </div>
-                <div>
-                    {information}
                 </div>
             </div>
         </div>

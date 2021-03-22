@@ -97,3 +97,13 @@ form input{
     background-color: orange;
     margin:10px;
 }
+
+.explain{
+    border: 1px solid orange;
+    width:500px;
+    height:50px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+}
