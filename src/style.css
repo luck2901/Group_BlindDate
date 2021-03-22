@@ -83,7 +83,7 @@ form input{
 #myMap{
     margin:20px;
     height:500px;
-    width:1000px;
+    width:500px;
 }
 
 .mapContainer{
@@ -91,4 +91,9 @@ form input{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+}
+
+.waves-effect{
+    background-color: orange;
+    margin:10px;
 }

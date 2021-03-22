@@ -1,5 +1,7 @@
-import { faSitemap } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUtensils, faCoffee, faLandmark } from "@fortawesome/free-solid-svg-icons";
+
 
 const { kakao } = window;
 
@@ -148,9 +150,27 @@ const Home = () => {
             </div>
             <div >
                 <div>
-                    <button onClick={onSelect} name="food">음식점</button>
-                    <button onClick={onSelect} name="cafe">카페</button>
-                    <button onClick={onSelect} name="tour">관광지</button>
+                    <a className="waves-effect waves-light btn" onClick={onSelect} name="food">
+                        <FontAwesomeIcon
+                        icon={faUtensils}
+                        color="blue"
+                        size="1x"
+                        style={{marginRight:10}}
+                    />Food</a>
+                    <a className="waves-effect waves-light btn" onClick={onSelect} name="cafe">
+                        <FontAwesomeIcon
+                            icon={faCoffee}
+                            color="blue"
+                            size="1x"
+                            style={{ marginRight: 10 }}
+                        />Cafe</a>
+                    <a className="waves-effect waves-light btn" onClick={onSelect} name="tour">
+                        <FontAwesomeIcon
+                            icon={faLandmark}
+                            color="blue"
+                            size="1x"
+                            style={{ marginRight: 10 }}
+                        />Tour</a>
                 </div>
                 <div>
                     {title}
