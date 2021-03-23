@@ -72,37 +72,49 @@ const Home = () => {
             content: '가장 한국적인 캠퍼스 전북대학교로 들어가는 한옥 정문입니다. 밤에 더 이뻐요'
         },
     ]
+    let map, container, options;
     useEffect(() => {
-        let position;
-        if (kind === 'food') {
-            position = food;
-        } else if (kind === 'cafe') {
-            position = cafe;
-        } else if (kind === "tour") {
-            position = tour;
-        }
-        const container = document.getElementById('myMap'); //지도를 담을 영역의 DOM 레퍼런스.
-        const options = {
+        container = document.getElementById('myMap'); //지도를 담을 영역의 DOM 레퍼런스.
+        options = {
             center: new kakao.maps.LatLng(35.844126, 127.131557), //지도의 중심좌표.
             level: 5 //지도의 레벨(확대, 축소 정도)
         };
-        const map = new kakao.maps.Map(container, options);
+        map = new kakao.maps.Map(container, options);
+    }, [])
+    let markers = [];
+    useEffect(() => {
+        let tmp = "";
+        if (kind === 'cafe')
+            tmp = cafe;
+        else if (kind === 'food')
+            tmp = food;
+        else if (kind === 'tour')
+            tmp = tour;
+
+        for (let i = 0; i < tmp.length; i++)
+            console.log(tmp[i].title);
         const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-        for (let i = 0; i < position.length; i++) {
+        for (let i = 0; i < tmp.length; i++) {
             let imageSize = new kakao.maps.Size(24, 35);
             let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
             let marker = new kakao.maps.Marker({
-                map: map,
-                position: position[i].latlng,
-                title: position[i].title,
+                position: tmp[i].latlng,
+                title: tmp[i].title,
                 image: markerImage
             });
+            marker.setMap(map);
+            markers.push(marker);
             kakao.maps.event.addListener(marker, 'click', function () {
-                setTitle(position[i].title);
-                setInformation(position[i].content);
+                setTitle(tmp[i].title);
+                setInformation(tmp[i].content);
             });
         }
-    }, [kind]);
+        return () => {
+            for (let i = 0; i < markers.length; i++)
+                markers[i].setMap(null);
+            markers = [];
+        }
+    },[kind]);
 
     const onSelect = (e) => {
         const { name } = e.target;
