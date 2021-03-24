@@ -9,6 +9,7 @@ const Home = () => {
     const [title, setTitle] = useState('');
     const [information, setInformation] = useState("");
     const [kind, setKind] = useState("food");
+    const [kakaoMap, setKaKaoMap] = useState(null);
     const food = [
         {
             title: '서래 갈매기',
@@ -72,14 +73,14 @@ const Home = () => {
             content: '가장 한국적인 캠퍼스 전북대학교로 들어가는 한옥 정문입니다. 밤에 더 이뻐요'
         },
     ]
-    let map, container, options;
     useEffect(() => {
-        container = document.getElementById('myMap'); //지도를 담을 영역의 DOM 레퍼런스.
-        options = {
+        const container = document.getElementById('myMap'); //지도를 담을 영역의 DOM 레퍼런스.
+        const options = {
             center: new kakao.maps.LatLng(35.844126, 127.131557), //지도의 중심좌표.
             level: 5 //지도의 레벨(확대, 축소 정도)
         };
-        map = new kakao.maps.Map(container, options);
+        const map = new kakao.maps.Map(container, options);
+        setKaKaoMap(map);
     }, [])
     let markers = [];
     useEffect(() => {
@@ -90,9 +91,6 @@ const Home = () => {
             tmp = food;
         else if (kind === 'tour')
             tmp = tour;
-
-        for (let i = 0; i < tmp.length; i++)
-            console.log(tmp[i].title);
         const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
         for (let i = 0; i < tmp.length; i++) {
             let imageSize = new kakao.maps.Size(24, 35);
@@ -102,7 +100,7 @@ const Home = () => {
                 title: tmp[i].title,
                 image: markerImage
             });
-            marker.setMap(map);
+            marker.setMap(kakaoMap);
             markers.push(marker);
             kakao.maps.event.addListener(marker, 'click', function () {
                 setTitle(tmp[i].title);
