@@ -7,7 +7,7 @@ const Chat = ({userObject}) => {
     const [chats, setChats] = useState([]);
     useEffect(() => {
         dbService.collection("chats").onSnapshot((snapshot) => {
-            const chatArray = snapshot.docs.map(doc => ({ id: doc.id, ...doc.doata() }));
+            const chatArray = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setChats(chatArray);
         })
     }, [])

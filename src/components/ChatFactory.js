@@ -3,7 +3,6 @@ import { dbService } from "../Fbase";
 
 const ChatFactory = ({ userObject }) => {
     const [chat, setChat] = useState("");
-    const [attachment, setAttachment] = useState("");
     const onSubmit = async (event) => {
         if (chat === "") {
             return;
@@ -21,8 +20,7 @@ const ChatFactory = ({ userObject }) => {
         const { target: { value } } = event;
         setChat(value);
     }
-    return
-    (
+    return(
         <form onSubmit={onSubmit} >
             <div>
                 <input
