@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
-import {chatDb} from "../Fbase";
+import { dbService } from "../Fbase";
+import Chatting from "../components/Chatting";
+import ChatFactory from "../components/ChatFactory";
 
-const Chat = () => {
-    const [item, setItem] = useState("");
+const Chat = ({userObject}) => {
+    const [chats, setChats] = useState([]);
     useEffect(() => {
-        const tmp = chatDb.ref('user/chat').on('value', (snapshot) => {
-            const data = snapshot.val();
-            setItem(data);
+        dbService.collection("chats").onSnapshot((snapshot) => {
+            const chatArray = snapshot.docs.map(doc => ({ id: doc.id, ...doc.doata() }));
+            setChats(chatArray);
         })
-    })
+    }, [])
     return (
-        <span>{item}</span>
+        <div>
+            <ChatFactory userObject={userObject} />
+            <div>
+                {chats.map((chat) => 
+                (<Chatting key={chat.id} chatObj={chat} isOwner={chat.creatorId === userObject.uid} />
+                ))}
+            </div>
+        </div>
     );
 }
 
